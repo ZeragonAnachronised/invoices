@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,10 @@ use App\Http\Controllers\UserController;
 
 Route::middleware('auth:api')->group(function () {
     Route::get('/logout', [UserController::class, 'logout']);
+    Route::get('/company', [CompanyController::class, 'index']);
+    Route::post('/company', [CompanyController::class, 'create']);
+    Route::post('/invoice', [InvoiceController::class, 'create']);
+    Route::put('/invoice', [InvoiceController::class, 'change']);
 });
-Route::post('/registration', [UserController::class, 'registration']);
+Route::post('/user', [UserController::class, 'registration']);
 Route::post('/login', [UserController::class, 'login']);
