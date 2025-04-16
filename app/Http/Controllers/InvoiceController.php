@@ -30,38 +30,6 @@ class InvoiceController extends Controller
             'invoice' => $invoice
         ], 201);
     }
-    public function accept($invoice_id)
-    {
-        if(Invoice::where('executorId', Auth::id())->where('id', $invoice_id)->count())
-        {
-            $invoice = Invoice::where('executorId', Auth::id())->where('id', $invoice_id)->first()->get();
-            $invoice->accepted = true;
-            return response()->json([
-                'message' => 'success'
-            ], 200);
-        }
-        else {
-            return response()->json([
-                'message' => 'not found'
-            ], 404);
-        }
-    }
-    public function finish($invoice_id)
-    {
-        if(Auth::user()->invoices()->where('id', $invoice_id)->count())
-        {
-            $invoice = Auth::user()->invoices()->where('id', $invoice_id)->first()->get();
-            $invoice->accepted = true;
-            return response()->json([
-                'message' => 'success'
-            ], 200);
-        }
-        else {
-            return response()->json([
-                'message' => 'not found'
-            ], 404);
-        }
-    }
     public function change(Request $request, $invoice_id)
     {
         if(Invoice::where('customerId', Auth::id())->where('id', $invoice_id)->count())
