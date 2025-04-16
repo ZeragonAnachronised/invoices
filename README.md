@@ -2,4 +2,4 @@
 
 # Made for learning
 
-This Laravel project teaches me product things
+This Laravel project teaches me production things
