@@ -19,8 +19,7 @@ class Invoice extends Model
     ];
 
     protected $attributes = [
-        'issued' => false,
-        'accepted' => false
+        'issued' => false
     ];
 
     public function user(): BelongsTo

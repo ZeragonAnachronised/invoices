@@ -21,7 +21,6 @@ return new class extends Migration
             $table->integer('period');
             $table->string('description');
             $table->boolean('issued');
-            $table->boolean('accepted');
             $table->timestamps();
         });
     }
