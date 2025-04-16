@@ -13,6 +13,26 @@ tags:
   - name: invoice
     description: Actions with an invoice
 paths:
+  /login:
+    post:
+      tags:
+      - login
+      summary: Returns user's token and data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '422':
+          description: Validation error
   /user:
     get:
       tags:
@@ -48,7 +68,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/User"
+              $ref: "#/components/schemas/ChangesRequest"
       responses:
         '204':
           description: Success
@@ -69,7 +89,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/User"
+              $ref: "#/components/schemas/RegistrationRequest"
       responses:
         '201':
           description: Success
@@ -197,6 +217,64 @@ paths:
           description: Validation error
 components:
   schemas:
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: user@gmail.com
+        password:
+          type: string
+          format: password
+          example: 12345678
+      required:
+        - email
+        - password
+    ChangesRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          example: theUser
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: James
+      required:
+        - username
+        - firstName
+        - lastName
+    RegistrationRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          example: theUser
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: James
+        email:
+          type: string
+          example: john@email.com
+        password:
+          type: string
+          example: 12345678
+        company:
+          type: string
+          example: Future Buildings
+      required:
+        - username
+        - firstName
+        - lastName
+        - email
+        - password
+        - company
     Invoice:
       type: object
       properties:
